@@ -1,0 +1,33 @@
+{
+  "name": "@tmcb/check-engines",
+  "description": "Never break your dependency tree with npm-install-checks running on npx",
+  "version": "0.0.0",
+  "license": "MIT",
+  "bin": {
+    "check-engines": "index.js"
+  },
+  "main": "index.js",
+  "author": "TED Vortex <ted.vortex@gmail.com> (vortex.name)",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "bugs": "https://github.com/TMCB-SPACE/check-engines/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TMCB-SPACE/check-engines.git"
+  },
+  "dependencies": {
+    "npm-install-checks": "^6.3.0"
+  },
+  "devDependencies": {
+    "@open-sauced/conventional-commit": "^1.0.1"
+  },
+  "scripts": {
+    "push": "npx @open-sauced/conventional-commit",
+    "test": "node ."
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

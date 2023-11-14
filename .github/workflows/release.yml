@@ -1,0 +1,61 @@
+name: "Release"
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    name: Set environment variables
+    runs-on: ubuntu-latest
+    outputs:
+      DEPLOY_ENVIRONMENT: ${{ steps.env.outputs.DEPLOY_ENVIRONMENT }}
+    steps:
+      - name: "☁️ compute environment variables"
+        id: env
+        run: |
+          echo "DEPLOY_ENVIRONMENT=$([[ ${{ github.ref_name }} == 'main' ]] && echo 'production' || echo ${{ github.ref_name }})" >> $GITHUB_OUTPUT
+
+  test:
+    name: Test and lint
+    uses: ./.github/workflows/development.yml
+
+  release:
+    environment:
+      name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
+      url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
+    outputs:
+      release-tag: ${{ steps.semantic-release.outputs.release-tag }}
+    name: Semantic release
+    needs:
+      - setup
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
+
+      - name: "🔧 install npm@latest"
+        run: npm i -g npm@latest
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@v1
+
+      - name: "🚀 release"
+        id: semantic-release
+        uses: tmcb-space/release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
