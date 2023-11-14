@@ -1,7 +1,7 @@
 {
   "name": "@tmcb/check-engines",
   "description": "Never break your dependency tree with npm-install-checks running on npx",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "bin": {
     "check-engines": "index.js"
