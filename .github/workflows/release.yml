@@ -42,17 +42,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: "🔧 setup node"
-        uses: actions/setup-node@v4
-        with:
-          node-version: 14
-
-      - name: "🔧 install npm@latest"
-        run: npm i -g npm@latest
-
-      - name: "📦 install dependencies"
-        uses: bahmutov/npm-install@v1
-
       - name: "🚀 release"
         id: semantic-release
         uses: tmcb-space/release@v1
