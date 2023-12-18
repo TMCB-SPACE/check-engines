@@ -20,14 +20,14 @@
   "dependencies": {
     "npm-install-checks": "^6.3.0"
   },
-  "devDependencies": {
-    "@open-sauced/conventional-commit": "^1.0.1"
-  },
   "scripts": {
-    "push": "npx @open-sauced/conventional-commit",
+    "push": "npx @tmcb/conventional-commit",
     "test": "node ."
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@tmcb/conventional-commit": "^1.0.0"
   }
 }
