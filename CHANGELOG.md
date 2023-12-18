@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.0.1](https://github.com/TMCB-SPACE/check-engines/compare/v1.0.0...v1.0.1) (2023-12-18)
+
+
+### 🐛 Bug Fixes
+
+* implement tmcb conventional commit utility ([0fa36e2](https://github.com/TMCB-SPACE/check-engines/commit/0fa36e260263618455131a7809bd61dc68729e7c)), closes [#1](https://github.com/TMCB-SPACE/check-engines/issues/1)
+
 ## 1.0.0 (2023-11-14)
 
 
